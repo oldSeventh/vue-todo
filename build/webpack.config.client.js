@@ -2,10 +2,11 @@ const path = require("path");
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HTMLPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const isDev = process.env.NODE_ENV === 'development';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const baseConfig = require('./webpack.config.base')
 const merge = require('webpack-merge')
+const isDev = process.env.NODE_ENV === 'development';
+
 
 let config
 const devServer ={
@@ -34,17 +35,19 @@ if(isDev){
         module:{
             rules:[
                 {
-                    test:/\.styl/,
+                    test:/\.styl(us)?$/,
                     use:[
-                        'style-loader',
+                        'vue-style-loader',
                         'css-loader',
                         {
-                            loader: 'postcss-loader',
-                            options: {
-                                sourceMap: true,
-                            }
+                            loader: 'postcss-loader'
                         },
-                        'stylus-loader'
+                        {
+                            loader: 'stylus-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        }
                     ]
                 }
             ]
@@ -70,6 +73,7 @@ if(isDev){
                 {
                     test:/\.styl/,
                     use: [
+                        'vue-style-loader',
                         {
                             loader: MiniCssExtractPlugin.loader,
                             options: {

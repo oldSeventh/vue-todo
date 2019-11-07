@@ -25,6 +25,21 @@ const config= {
     module: {
         rules: [
             {
+                test: /\.css$/,
+                use: [
+                    'vue-style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            // 开启 CSS Modules
+                            modules: true,
+                            // 自定义生成的类名
+                            localIdentName: '[local]_[hash:base64:8]'
+                        }
+                    }
+                ]
+            },
+            {
                 test:/\.vue$/,
                 loader: 'vue-loader'
             },{
@@ -41,9 +56,7 @@ const config= {
                             name:'[name].[ext]'
                         }
                     }
-
                 ]
-
             }
         ]
     }
@@ -52,14 +65,16 @@ const config= {
 
 if(isDev){
     config.module.rules.push({
-        test:/\.styl/,
+        test:/\.styl(us)?$/,
         use:[
-            'style-loader',
-            'css-loader',
+            'vue-style-loader',
             {
-                loader: 'postcss-loader',
+                loader:'css-loader',
                 options: {
-                    sourceMap: true,
+                    // 开启 CSS Modules
+                    modules: true,
+                    // 自定义生成的类名
+                    localIdentName: '[local]_[hash:base64:8]'
                 }
             },
             'stylus-loader'
@@ -95,7 +110,9 @@ if(isDev){
             'css-loader',
             {
                 loader: 'postcss-loader',
-                options: { sourceMap: true }
+                options: {
+                    sourceMap: true
+                }
             },
             'stylus-loader'
         ]
