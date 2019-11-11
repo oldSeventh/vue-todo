@@ -4,11 +4,11 @@
     </header>
 </template>
 <script>
-    export default {
-        mounted() {
-            console.log(this.$style)
-        }
-    }
+export default {
+  mounted() {
+    console.log(this.$style)
+  }
+}
 </script>
 <style lang="css" module>
     .main-header {
@@ -20,6 +20,5 @@
         font-weight: 400;
         margin: 20px;
     }
-
 
 </style>
