@@ -14,16 +14,16 @@ export default {
   props: {
     todo: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
 
   },
   methods: {
     deleteTodo: function() {
-      this.$emit('del', this.todo.id);
-    },
-  },
-};
+      this.$emit('del', this.todo.id)
+    }
+  }
+}
 </script>
 
 <style lang="stylus" scoped>

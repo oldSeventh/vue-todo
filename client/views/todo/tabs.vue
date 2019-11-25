@@ -21,33 +21,33 @@ export default {
   props: {
     filter: {
       type: String,
-      required: true,
+      required: true
     },
     todos: {
       type: Array,
-      required: true,
-    },
+      required: true
+    }
   },
   computed: {
     unFinishedTodoLength() {
-      return this.todos.filter((todo) => !todo.complated).length;
-    },
+      return this.todos.filter((todo) => !todo.complated).length
+    }
   },
   data() {
     return {
-      states: ['all', 'active', 'complated'],
-    };
+      states: ['all', 'active', 'complated']
+    }
   },
   methods: {
     toggleFilter: function(state) {
-      this.$emit('toggle', state);
+      this.$emit('toggle', state)
     },
     clearAllComplated: function() {
-      this.$emit('cle');
-    },
-  },
+      this.$emit('cle')
+    }
+  }
 
-};
+}
 </script>
 
 <style lang="stylus" scoped>

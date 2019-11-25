@@ -1,9 +1,9 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
 const compoent = {
   props: {
     active: Boolean,
-    propOne: String,
+    propOne: String
   },
   template: '<div>' +
               '<input type="text" v-model.number="text"/>' +
@@ -12,22 +12,22 @@ const compoent = {
             '</div>',
   data() {
     return {
-      text: 0,
-    };
+      text: 0
+    }
   },
   methods: {
     handleChange() {
-      this.$emit('change');
-    },
-  },
-};
+      this.$emit('change')
+    }
+  }
+}
 
 // Vue.component('CompOne', compoent);
 
 new Vue({
   el: '#root',
   data: {
-    prop1: 'text1',
+    prop1: 'text1'
   },
   template: '<div>' +
     '<comp-one :active="true" :prop-one="prop1" @change="handleChange">' +
@@ -35,12 +35,12 @@ new Vue({
     '<comp-one :active="false" propOne="test2"></comp-one>' +
     '</div>',
   components: {
-    CompOne: compoent,
+    CompOne: compoent
   },
   methods: {
     handleChange() {
-      console.log('aaaaaaa');
-      this.prop1 += 1;
-    },
-  },
-});
+      console.log('aaaaaaa')
+      this.prop1 += 1
+    }
+  }
+})

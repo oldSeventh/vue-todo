@@ -1,1 +1,2 @@
-import './extend';
+// import './extend';
+import './v-model'

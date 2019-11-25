@@ -1,6 +1,7 @@
 <template>
     <section class="real-app">
-        <input type="text"
+        <input
+type="text"
                autofocus = "autofocus"
                placeholder="接下来做什么"
                @keyup.enter="addTodo">
@@ -14,52 +15,53 @@
                 :todos="todos"
                 @toggle="toggleFilter"
                 @cle="clearComplate"></Tabs>
+      <router-view/>
     </section>
 </template>
 <script>
-import Item from './item.vue';
-import Tabs from './tabs.vue';
-let id = 0;
+import Item from './item.vue'
+import Tabs from './tabs.vue'
+let id = 0
 export default {
   data() {
     return {
       todos: [],
-      filter: 'all',
-    };
+      filter: 'all'
+    }
   },
   components: {
     Item,
-    Tabs,
+    Tabs
   },
   computed: {
     filteredTodos() {
       if (this.filter === 'all') {
-        return this.todos;
+        return this.todos
       }
-      const complated = this.filter === 'complated';
-      return this.todos.filter((todo) => complated === todo.complated);
-    },
+      const complated = this.filter === 'complated'
+      return this.todos.filter((todo) => complated === todo.complated)
+    }
   },
   methods: {
     addTodo: function(e) {
       this.todos.unshift({
         id: id++,
         content: e.target.value.trim(),
-        complated: false,
-      });
-      e.target.value = '';
+        complated: false
+      })
+      e.target.value = ''
     },
     deleteTodo: function(id) {
-      this.todos.splice(this.todos.findIndex((todo) => todo.id === id), 1);
+      this.todos.splice(this.todos.findIndex((todo) => todo.id === id), 1)
     },
     toggleFilter(state) {
-      this.filter = state;
+      this.filter = state
     },
     clearComplate: function() {
-      this.todos = this.todos.filter((todo) => !todo.complated);
-    },
-  },
-};
+      this.todos = this.todos.filter((todo) => !todo.complated)
+    }
+  }
+}
 
 </script>
 
