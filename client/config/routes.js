@@ -7,12 +7,21 @@ export default [
     redirect: '/app'
   },
   {
-    path: '/app',
-    component: Todo,
+    path: '/app/:id',
+    // path: '/app',
+    /* components: {
+      default: Todo,
+      a: Login
+    }*/
+    component: () => import('../views/todo/todo.vue'),
     name: 'app',
     meta: {
       title: 'this is app',
       description: 'asdasd'
+    },
+    beforeEnter(to, from, next) {
+      console.log('app route before enter')
+      next()
     },
     children: [
       {
@@ -23,6 +32,10 @@ export default [
   },
   {
     path: '/login',
+    /* components: {
+      default: Login,
+      a: Todo
+    }*/
     component: Login
   }
 ]
