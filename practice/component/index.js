@@ -1,2 +1,2 @@
 // import './extend';
-import './v-model'
+import './test.vue'

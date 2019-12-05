@@ -7,16 +7,18 @@ const config= {
     entry: path.join(__dirname, '../client/index.js'),
     output: {
         filename: "bundle.[hash:8].js",
-        path: path.join(__dirname,'../dist')
+        path: path.join(__dirname,'../dist'),
+        chunkFilename: '[name].bundle.[hash:8].js',
+        // publicPath: "dist/"
     },
     module: {
         rules: [
-            {
-                test:/\.(vue|js|jsx)$/,
-                loader: 'eslint-loader',
-                exclude: /node_modules/,
-                enforce: "pre"
-            },
+            // {
+            //     test:/\.(vue|js|jsx)$/,
+            //     loader: 'eslint-loader',
+            //     exclude: /node_modules/,
+            //     enforce: "pre"
+            // },
             {
                 test:/\.vue$/,
                 loader: 'vue-loader',
@@ -26,12 +28,17 @@ const config= {
                 loader: "babel-loader"
             },{
                 test:/\.js$/,
-                loader: "babel-loader",
+                use: [
+                  {
+                    loader: "babel-loader",
+                    options: {
+                      presets: ['env']
+                    }
+                  },
+                  "eslint-loader"
+                ],
                 exclude: __dirname + 'node_modules',
-                include: __dirname + 'src',
-                options: {
-                    presets: ['env']
-                }
+                include: __dirname + 'src'
             }
             ,{
                 test: /\.(gif|jpg|jpeg|png|svg)$/,

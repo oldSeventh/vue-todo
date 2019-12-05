@@ -3,10 +3,13 @@
         <div id="cover"></div>
         <Header></Header>
         <!--<todo></todo>-->
-        <router-link :to="{name: 'app'}">app</router-link>
+        <p>{{count}}</p>
+        <router-link to="/app/123">app123</router-link>
+        <router-link to="/app/456">app456</router-link>
         <router-link to="/login">login</router-link>
         <router-view/>
         <Footer></Footer>
+        <router-view name="a"/>
     </div>
 </template>
 
@@ -17,8 +20,20 @@ import Footer from './layout/footer.jsx'
 export default {
   components: {
     Header,
-    // Todo,
+    // Todo ,
     Footer
+  },
+  mounted() {
+      console.log(this.$store)
+      let i = 1
+      setInterval(() => {
+        this.$store.commit('updateCount',i++)
+      },1000)
+  },
+  computed: {
+      count(){
+          return this.$store.state.count
+      }
   }
 }
 </script>
