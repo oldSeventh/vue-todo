@@ -4,6 +4,7 @@
         <Header></Header>
         <!--<todo></todo>-->
         <p>{{fullName}} {{count}}</p>
+        <p>{{textA}}   {{textB}}   {{textPlus}}</p>
         <router-link to="/app/123">app123</router-link>
         <router-link to="/app/456">app456</router-link>
         <router-link to="/login">login</router-link>
@@ -31,11 +32,12 @@ export default {
     Footer
   },
   methods: {
-      ...mapActions(['updateCountAsync']),
-      ...mapMutations(['updateCount'])
+      ...mapActions(['updateCountAsync','a/add','testAction']),
+      ...mapMutations(['updateCount','a/updateText'])
   },
   mounted() {
       console.log(this.$store)
+      this.testAction()
       this.updateCountAsync({
           num: 5,
           time: 2000
@@ -55,7 +57,16 @@ export default {
       }*/,
       fullName(){
           return this.$store.getters.fullName
-      }
+      },
+      textA(){
+          return this.$store.state.a.text
+      },
+      textB(){
+          return this.$store.state.b.text
+      },
+      ...mapGetters({
+          textPlus :'a/textPlus'
+      })
   }
 }
 </script>
